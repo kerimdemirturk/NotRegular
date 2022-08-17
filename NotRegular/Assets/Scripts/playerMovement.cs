@@ -20,20 +20,12 @@ public class playerMovement : MonoBehaviour
 
     private Vector3 movement = Vector3.zero;
 
-
-
-  
     void Start()
     {
         playerAnim  = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody>();
     }
 
-    
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
         Movement();
@@ -44,13 +36,17 @@ public class playerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         movement = new Vector3(horizontalInput,0, verticalInput);
+        float rotationY = transform.rotation.y;
        
         
-        
+        //walk and turn codes
         if(movement != Vector3.zero)
         {
-            playerRb.velocity = Vector3.forward * verticalInput * Time.fixedDeltaTime * walkSpeed;
-            if (movement.x > 0.1f)
+           
+            playerRb.velocity =  transform.forward* verticalInput * Time.fixedDeltaTime * walkSpeed; //always walk to forward by facing direction. 
+           
+
+            if (movement.x >0.1f)
             {
                 transform.Rotate(0, horizontalInput * rotateSpeed * Time.fixedDeltaTime, 0);
             }
@@ -65,11 +61,12 @@ public class playerMovement : MonoBehaviour
             playerRb.velocity = Vector3.zero;
             playerAnim.SetFloat("Move", 0.0f);
         }
+
+        //Running codes
         if(Input.GetKey(KeyCode.LeftShift) && movement != Vector3.zero)
         {
-            playerRb.velocity = Vector3.forward * verticalInput * Time.fixedDeltaTime*runSpeed;
+            playerRb.velocity = transform.forward* verticalInput * Time.fixedDeltaTime*runSpeed;
             playerAnim.SetFloat("Move", 1);
         }
-        
     }
 }
