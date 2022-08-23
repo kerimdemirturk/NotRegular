@@ -11,6 +11,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField]private float rotateSpeed = 5;
+    [SerializeField] private LayerMask aimColliderMask=new LayerMask();
 
     private float horizontalInput;
     private float verticalInput;
@@ -19,6 +20,7 @@ public class playerMovement : MonoBehaviour
     public Rigidbody playerRb;
 
     private Vector3 movement = Vector3.zero;
+    public GameObject bullet;
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class playerMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         movement = new Vector3(horizontalInput,0, verticalInput);
         float rotationY = transform.rotation.y;
+       
        
         
         //walk and turn codes
@@ -67,6 +70,12 @@ public class playerMovement : MonoBehaviour
         {
             playerRb.velocity = transform.forward* verticalInput * Time.fixedDeltaTime*runSpeed;
             playerAnim.SetFloat("Move", 1);
+        }
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray,out RaycastHit raycastHit,999f,aimColliderMask))
+        {
+            bullet.transform.position = raycastHit.point;
         }
     }
 }
