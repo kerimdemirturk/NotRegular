@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - head
+  - body
+  - leg
+  - bullet
+  - "A\u0131Man"
   layers:
   - Default
   - TransparentFX

@@ -33,7 +33,7 @@ public class VehiclesEntry : MonoBehaviour
             {
                 carCAM.SetActive(false);
                 carFollowCam.SetActive(true);
-                Debug.Log("çalýþdý");
+                
             }
 
             if (Input.GetKeyDown(KeyCode.F))

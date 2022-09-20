@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2472850263625098188}
   - component: {fileID: 1710395377026688830}
   - component: {fileID: 3083908913292604433}
+  - component: {fileID: 6667412316269127450}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2472850263627037964}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 9.081443, y: -7.7930795e-16, z: 35.09691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07841884, y: 2.9685146e-16, z: -13.369002}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2472850263624098060
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -114,3 +115,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 10
+  headShotCount: 0
+  bodyShotCount: 0
+  legShotCount: 0
+--- !u!65 &6667412316269127450
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472850263627037964}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4309897, y: 0.907529, z: 0.8793634}
+  m_Center: {x: 0.00000029802328, y: 0.00000016391277, z: 0.00000008940699}
