@@ -11,6 +11,8 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float rotateSpeed = 5;
+
+    public static bool isEnterPlane = false;
  
     private float horizontalInput;
     private float verticalInput;
@@ -86,6 +88,15 @@ public class playerMovement : MonoBehaviour
         }
 
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "plane")
+        {
+            isEnterPlane = true;
+        }
+    }
+
 
 
 }

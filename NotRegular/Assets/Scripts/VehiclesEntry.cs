@@ -6,9 +6,13 @@ public class VehiclesEntry : MonoBehaviour
 {
     public GameObject player;
     public GameObject drivingCar;
-    public GameObject carCAM;
-    public bool isEnterCar = false;
-    public GameObject carFollowCam;
+    public GameObject plane;
+    public GameObject carCocpitCAM;
+    public bool isEntervehicle = false;
+    public GameObject vehicleFollowCam;
+    public GameObject planeCam;
+
+
    
     void Start()
     {
@@ -19,29 +23,30 @@ public class VehiclesEntry : MonoBehaviour
     void Update()
     {
         //trigger and drive car.
-        if(isEnterCar == true)
+        if(isEntervehicle == true)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                carCAM.SetActive(true);
+                carCocpitCAM.SetActive(true);
                 player.SetActive(false);
                 drivingCar.GetComponent<carsMovement>().enabled = true;
                 this.gameObject.GetComponent<BoxCollider>().enabled = false;
+
             }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                carCAM.SetActive(false);
-                carFollowCam.SetActive(true);
+                carCocpitCAM.SetActive(false);
+                vehicleFollowCam.SetActive(true);
                 
             }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                carCAM.SetActive(false);
-                carFollowCam.SetActive(false);
+                carCocpitCAM.SetActive(false);
+                vehicleFollowCam.SetActive(false);
                 player.SetActive(true);
-                isEnterCar = false;
+                isEntervehicle = false;
                 drivingCar.GetComponent<carsMovement>().enabled = false;
                 this.gameObject.GetComponent<BoxCollider>().enabled = true;
                 player.transform.position = new Vector3(drivingCar.transform.position.x + 3, player.transform.position.y, drivingCar.transform.position.z);
@@ -50,21 +55,28 @@ public class VehiclesEntry : MonoBehaviour
             }
         }
         Vector3 carPos = drivingCar.transform.position;
+
+        if(playerMovement.isEnterPlane == true)
+        {
+            planeCam.SetActive(true);
+            player.SetActive(false);
+        }
         
     }
 
     //check if player try to enter car
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
-            isEnterCar = true;
+            isEntervehicle = true;
+            Debug.Log("plane");
         }
     }
 
     //check player exit car
     private void OnTriggerExit(Collider other)
     {
-        isEnterCar = false;
+        isEntervehicle = false;
     }
 }
