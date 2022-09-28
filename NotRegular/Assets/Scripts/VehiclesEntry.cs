@@ -23,6 +23,7 @@ public class VehiclesEntry : MonoBehaviour
     void Update()
     {
         //trigger and drive car.
+        /*
         if(isEntervehicle == true)
         {
             if(Input.GetKeyDown(KeyCode.E))
@@ -54,17 +55,66 @@ public class VehiclesEntry : MonoBehaviour
                 
             }
         }
+        */
+
         Vector3 carPos = drivingCar.transform.position;
+
 
         if(playerMovement.isEnterPlane == true)
         {
-            planeCam.SetActive(true);
-            player.SetActive(false);
+
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                planeCam.SetActive(true);
+                player.SetActive(false);
+                plane.GetComponent<PlaneController>().enabled = true;
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            }
+
+            Debug.Log("planeenter");
+
         }
+
+        if(playerMovement.isEnterCar == true)
+        {
+            Debug.Log("entercar");
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                carCocpitCAM.SetActive(true);
+                player.SetActive(false);
+                drivingCar.GetComponent<carsMovement>().enabled = true;
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                carCocpitCAM.SetActive(false);
+                vehicleFollowCam.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                carCocpitCAM.SetActive(false);
+                vehicleFollowCam.SetActive(false);
+                player.SetActive(true);
+                isEntervehicle = false;
+                drivingCar.GetComponent<carsMovement>().enabled = false;
+                this.gameObject.GetComponent<BoxCollider>().enabled = true;
+                player.transform.position = new Vector3(drivingCar.transform.position.x + 3, player.transform.position.y, drivingCar.transform.position.z);
+                drivingCar.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            }
+
+
+        }
+
         
     }
 
     //check if player try to enter car
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
@@ -73,6 +123,7 @@ public class VehiclesEntry : MonoBehaviour
             Debug.Log("plane");
         }
     }
+    */
 
     //check player exit car
     private void OnTriggerExit(Collider other)

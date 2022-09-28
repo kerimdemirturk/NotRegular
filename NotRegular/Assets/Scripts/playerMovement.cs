@@ -13,6 +13,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float rotateSpeed = 5;
 
     public static bool isEnterPlane = false;
+    public static bool isEnterCar = false;
  
     private float horizontalInput;
     private float verticalInput;
@@ -95,7 +96,13 @@ public class playerMovement : MonoBehaviour
         {
             isEnterPlane = true;
         }
+        if(other.gameObject.tag == "car")
+        {
+            isEnterCar = true;
+        }
     }
+
+    
 
 
 

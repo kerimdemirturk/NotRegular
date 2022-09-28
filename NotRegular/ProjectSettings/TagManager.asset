@@ -9,6 +9,9 @@ TagManager:
   - leg
   - bullet
   - "A\u0131Man"
+  - player
+  - car
+  - plane
   layers:
   - Default
   - TransparentFX
